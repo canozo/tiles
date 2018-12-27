@@ -1,30 +1,18 @@
-require 'map-functions'
-require 'player-functions'
-
-local shit = false
+require 'map'
+require 'player'
 
 function love.load()
-  loadMap('maps/country.lua')
-  loadPlayer('player/country.lua')
+  map = Map:new('maps/country.lua')
+  player = Player:new('player/country.lua')
 end
 
 function love.keypressed(key)
-  if key == 'x' then
-    print('camara si')
-    shit = true
-  end
-
-  if key == 'z' then
-    print('camara no')
-    shit = false
-  end
-
   if key == 'w' or key == 'a' or key == 's' or key == 'd' then
     -- es un movimiento
-    movePlayer(key)
+    player:move(key)
   elseif key == '1' or key == '2' or key == '3' or key == '4' then
     -- es un cambio de sprite
-    changePlayer(key)
+    player:change(key)
   else
     -- asaber que putas
     print(key)
@@ -32,11 +20,6 @@ function love.keypressed(key)
 end
 
 function love.draw()
-  if shit then
-    love.graphics.translate(-20, -20)
-  else
-    love.graphics.translate(20, 20)
-  end
-  drawMap()
-  drawPlayer()
+  map:draw()
+  player:draw()
 end

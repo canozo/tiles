@@ -5,4 +5,4 @@ local quadInfo = {
   { '#', 32, 32 }  -- caja desde arriba
 }
 
-newPlayer(32, 32, '/images/countryside.png', quadInfo)
+return Player:load(32, 32, '/images/countryside.png', quadInfo)
